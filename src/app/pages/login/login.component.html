@@ -1,0 +1,26 @@
+<app-header></app-header>
+<div class="login__main bg__login" >
+    <div class="main">
+        <div class="login__form">
+            <div class="login__header">
+                <h3 class="head__three">
+                    Welcome
+                </h3>
+                <p class="paragraph">
+                    Log in to your account
+                </p>
+            </div>
+            <form [formGroup]="form">
+                <div class="form__group">
+                    <label for="username"> Username </label>
+                    <input type="text" formControlName="username">
+                </div>
+                <div class="form__group">
+                    <label for="password"> Password </label>
+                    <input type="password" formControlName="password">
+                </div>
+                <button class="btn__primary" [disabled]="!form.valid"  (click)="login()">Login</button>
+            </form>
+        </div>
+    </div>
+</div>

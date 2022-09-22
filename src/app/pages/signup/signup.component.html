@@ -1,0 +1,46 @@
+<app-header></app-header>
+<div class="login__main bg__login" >
+    <div class="main">
+        
+        <div class="login__form">
+            <div class="login__header">
+                <h3 class="head__three">
+                    Welcome
+                </h3>
+                <p class="paragraph">
+                    Create your account
+                </p>
+            </div>
+            <form [formGroup]="form">
+                <div class="form__grouped">
+                    <div class="form__group">
+                        <label for="firstName"> First Name </label>
+                        <input type="text" formControlName="firstName">
+                    </div>
+                    <div class="form__group">
+                        <label for="lastName"> Last Name </label>
+                        <input type="text" formControlName="lastName">
+                    </div>
+                </div>
+                <div class="form__group">
+                    <label for="username"> Username </label>
+                    <input type="text" formControlName="username">
+                </div>
+                <div class="form__group">
+                    <label for="email"> Email </label>
+                    <input type="email" formControlName="email">
+                </div>
+                <div class="form__group">
+                    <label for="phone"> Phone Number </label>
+                    <input type="text" formControlName="phone">
+                </div>
+                <div class="form__group">
+                    <label for="password"> Password </label>
+                    <input type="password" formControlName="password">
+                </div>
+                <button class="btn__primary" [disabled]="!form.valid" (click)="signUp()">Create Account</button>
+            </form>
+
+        </div>
+    </div>
+</div>
