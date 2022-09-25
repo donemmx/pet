@@ -1,6 +1,7 @@
-import { ApiService } from './../../auth/api.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { HttpParams } from '@angular/common/http';
+import { UserService } from 'src/app/api/services';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class LoginComponent implements OnInit {
   form!: FormGroup;
 
-  constructor(private api: ApiService, private formBuilder: FormBuilder) {
+  constructor(private api: UserService, private formBuilder: FormBuilder) {
 
   }
 
@@ -21,7 +22,13 @@ export class LoginComponent implements OnInit {
     })
   }
 
+  
   login(){
-    console.log(this.form.value)
+      
+ const {username, password} = this.form.value
+    
+    this.api.loginUser$Json({username, password}).subscribe((response) => {
+      console.log(response)
+    })
   }
 }

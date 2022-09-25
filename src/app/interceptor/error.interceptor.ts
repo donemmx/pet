@@ -12,7 +12,6 @@ import {
   of,
   retryWhen,
   throwError,
-  mergeMap,
   catchError,
 } from 'rxjs';
 

@@ -16,6 +16,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { ListPetsComponent } from './pages/list-pets/list-pets.component'; 
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from './interceptor/jwt.interceptor';
+import { ApiModule } from './api/api.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,13 +34,22 @@ import { ListPetsComponent } from './pages/list-pets/list-pets.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     MatPaginatorModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    ApiModule.forRoot({ rootUrl: environment.apiUrl }),
     StoreModule.forRoot({}, {}),
+   
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
-  providers: [],
+  providers: [
+    JwtInterceptor, {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
